@@ -2,7 +2,7 @@
 //
 // Datasheet: https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf
 //
-package ssd1306 // import "tinygo.org/x/drivers/ssd1306"
+package ssd1306
 
 import (
 	"errors"
@@ -33,14 +33,6 @@ type I2CBus struct {
 	wire    machine.I2C
 	Address uint16
 }
-
-type SPIBus struct {
-	wire     machine.SPI
-	dcPin    machine.Pin
-	resetPin machine.Pin
-	csPin    machine.Pin
-}
-
 type Buser interface {
 	configure()
 	tx(data []byte, isCommand bool)
@@ -55,21 +47,6 @@ func NewI2C(bus machine.I2C) Device {
 		bus: &I2CBus{
 			wire:    bus,
 			Address: Address,
-		},
-	}
-}
-
-// NewSPI creates a new SSD1306 connection. The SPI wire must already be configured.
-func NewSPI(bus machine.SPI, dcPin, resetPin, csPin machine.Pin) Device {
-	dcPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	resetPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	csPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	return Device{
-		bus: &SPIBus{
-			wire:     bus,
-			dcPin:    dcPin,
-			resetPin: resetPin,
-			csPin:    csPin,
 		},
 	}
 }
@@ -237,27 +214,8 @@ func (b *I2CBus) setAddress(address uint16) {
 	b.Address = address
 }
 
-// setAddress does nothing, but it's required to avoid reflection
-func (b *SPIBus) setAddress(address uint16) {
-	// do nothing
-	println("trying to Configure an address on a SPI device")
-}
-
 // configure does nothing, but it's required to avoid reflection
 func (b *I2CBus) configure() {}
-
-// configure configures some pins with the SPI bus
-func (b *SPIBus) configure() {
-	b.csPin.Low()
-	b.dcPin.Low()
-	b.resetPin.Low()
-
-	b.resetPin.High()
-	time.Sleep(1 * time.Millisecond)
-	b.resetPin.Low()
-	time.Sleep(10 * time.Millisecond)
-	b.resetPin.High()
-}
 
 // Tx sends data to the display
 func (d *Device) Tx(data []byte, isCommand bool) {
@@ -270,27 +228,6 @@ func (b *I2CBus) tx(data []byte, isCommand bool) {
 		b.wire.WriteRegister(uint8(b.Address), 0x00, data)
 	} else {
 		b.wire.WriteRegister(uint8(b.Address), 0x40, data)
-	}
-}
-
-// tx sends data to the display (SPIBus implementation)
-func (b *SPIBus) tx(data []byte, isCommand bool) {
-	if isCommand {
-		b.csPin.High()
-		time.Sleep(1 * time.Millisecond)
-		b.dcPin.Low()
-		b.csPin.Low()
-
-		b.wire.Tx(data, nil)
-		b.csPin.High()
-	} else {
-		b.csPin.High()
-		time.Sleep(1 * time.Millisecond)
-		b.dcPin.High()
-		b.csPin.Low()
-
-		b.wire.Tx(data, nil)
-		b.csPin.High()
 	}
 }
 
