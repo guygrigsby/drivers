@@ -5,7 +5,7 @@ import (
 	"machine"
 	"time"
 
-	"tinygo.org/x/drivers/mpu6050"
+	"github.com/guygrigsby/drivers/mpu6050"
 )
 
 func main() {

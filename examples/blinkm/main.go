@@ -6,7 +6,7 @@ import (
 	"machine"
 	"time"
 
-	"tinygo.org/x/drivers/blinkm"
+	"github.com/guygrigsby/drivers/blinkm"
 )
 
 func main() {

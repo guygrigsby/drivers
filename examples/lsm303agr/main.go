@@ -3,7 +3,7 @@ package main
 import (
 	"machine"
 	"time"
-	"tinygo.org/x/drivers/lsm303agr"
+	"github.com/guygrigsby/drivers/lsm303agr"
 )
 
 func main() {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"machine"
 	"time"
-	"tinygo.org/x/drivers/bmp280"
+	"github.com/guygrigsby/drivers/bmp280"
 )
 
 func main() {

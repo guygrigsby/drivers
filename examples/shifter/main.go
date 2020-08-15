@@ -4,7 +4,7 @@ package main
 import (
 	"time"
 
-	"tinygo.org/x/drivers/shifter"
+	"github.com/guygrigsby/drivers/shifter"
 )
 
 func main() {

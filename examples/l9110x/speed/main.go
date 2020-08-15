@@ -4,7 +4,7 @@ import (
 	"machine"
 	"time"
 
-	"tinygo.org/x/drivers/l9110x"
+	"github.com/guygrigsby/drivers/l9110x"
 )
 
 const (

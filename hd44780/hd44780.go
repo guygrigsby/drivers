@@ -2,7 +2,7 @@
 //
 // Datasheet: https://www.sparkfun.com/datasheets/LCD/HD44780.pdf
 //
-package hd44780 // import "tinygo.org/x/drivers/hd44780"
+package hd44780 // import "github.com/guygrigsby/drivers/hd44780"
 
 import (
 	"errors"

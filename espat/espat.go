@@ -16,7 +16,7 @@
 // AT command set:
 // https://www.espressif.com/sites/default/files/documentation/4a-esp8266_at_instruction_set_en.pdf
 //
-package espat // import "tinygo.org/x/drivers/espat"
+package espat // import "github.com/guygrigsby/drivers/espat"
 
 import (
 	"errors"
@@ -25,7 +25,7 @@ import (
 	"strings"
 	"time"
 
-	"tinygo.org/x/drivers/net"
+	"github.com/guygrigsby/drivers/net"
 )
 
 // Device wraps UART connection to the ESP8266/ESP32.

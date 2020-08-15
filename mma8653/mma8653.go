@@ -4,7 +4,7 @@
 // Datasheet:
 // https://www.nxp.com/docs/en/data-sheet/MMA8653FC.pdf
 //
-package mma8653 // import "tinygo.org/x/drivers/mma8653"
+package mma8653 // import "github.com/guygrigsby/drivers/mma8653"
 
 import (
 	"machine"

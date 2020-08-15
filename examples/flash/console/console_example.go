@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"tinygo.org/x/drivers/flash"
+	"github.com/guygrigsby/drivers/flash"
 )
 
 const consoleBufLen = 64

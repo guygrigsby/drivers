@@ -5,7 +5,7 @@ package main
 import (
 	"machine"
 
-	"tinygo.org/x/drivers/ili9341"
+	"github.com/guygrigsby/drivers/ili9341"
 )
 
 var (

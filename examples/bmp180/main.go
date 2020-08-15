@@ -5,7 +5,7 @@ import (
 
 	"machine"
 
-	"tinygo.org/x/drivers/bmp180"
+	"github.com/guygrigsby/drivers/bmp180"
 )
 
 func main() {

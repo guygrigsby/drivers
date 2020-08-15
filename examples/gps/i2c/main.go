@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"machine"
 
-	"tinygo.org/x/drivers/gps"
+	"github.com/guygrigsby/drivers/gps"
 )
 
 func main() {

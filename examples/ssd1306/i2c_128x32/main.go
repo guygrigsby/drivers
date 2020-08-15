@@ -6,7 +6,7 @@ import (
 	"image/color"
 	"time"
 
-	"tinygo.org/x/drivers/ssd1306"
+	"github.com/guygrigsby/drivers/ssd1306"
 )
 
 func main() {

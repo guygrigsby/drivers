@@ -2,7 +2,7 @@
 //
 // Datasheet:
 // https://cdn-learn.adafruit.com/assets/assets/000/043/261/original/Grid-EYE_SPECIFICATIONS%28Reference%29.pdf
-package amg88xx // import "tinygo.org/x/drivers/amg88xx"
+package amg88xx // import "github.com/guygrigsby/drivers/amg88xx"
 
 import (
 	"machine"

@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"tinygo.org/x/drivers/hd44780i2c"
+	"github.com/guygrigsby/drivers/hd44780i2c"
 )
 
 func main() {

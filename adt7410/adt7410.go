@@ -1,4 +1,4 @@
-package adt7410 // import "tinygo.org/x/drivers/adt7410"
+package adt7410 // import "github.com/guygrigsby/drivers/adt7410"
 
 import (
 	"machine"

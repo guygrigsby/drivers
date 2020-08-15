@@ -10,8 +10,8 @@ import (
 	"runtime"
 	"time"
 
-	"tinygo.org/x/drivers/net"
-	"tinygo.org/x/drivers/wifinina"
+	"github.com/guygrigsby/drivers/net"
+	"github.com/guygrigsby/drivers/wifinina"
 )
 
 // access point info

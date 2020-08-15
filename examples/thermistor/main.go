@@ -6,7 +6,7 @@ import (
 	"machine"
 	"time"
 
-	"tinygo.org/x/drivers/thermistor"
+	"github.com/guygrigsby/drivers/thermistor"
 )
 
 const ADC_PIN = machine.TEMPSENSOR

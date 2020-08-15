@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"tinygo.org/x/drivers/net"
+	"github.com/guygrigsby/drivers/net"
 )
 
 const (

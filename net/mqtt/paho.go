@@ -25,7 +25,7 @@ import (
 	"time"
 
 	"github.com/eclipse/paho.mqtt.golang/packets"
-	"tinygo.org/x/drivers/net"
+	"github.com/guygrigsby/drivers/net"
 )
 
 const (

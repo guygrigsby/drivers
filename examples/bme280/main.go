@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"tinygo.org/x/drivers/bme280"
+	"github.com/guygrigsby/drivers/bme280"
 )
 
 func main() {

@@ -3,7 +3,7 @@
 //
 // Datasheet: https://www.elecrow.com/download/datasheet-l9110.pdf
 //
-package l9110x // import "tinygo.org/x/drivers/l9110x"
+package l9110x // import "github.com/guygrigsby/drivers/l9110x"
 
 import (
 	"machine"
