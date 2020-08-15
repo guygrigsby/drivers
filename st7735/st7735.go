@@ -2,7 +2,7 @@
 //
 // Datasheet: https://www.crystalfontz.com/controllers/Sitronix/ST7735R/319/
 //
-package st7735 // import "tinygo.org/x/drivers/st7735"
+package st7735 
 
 import (
 	"image/color"

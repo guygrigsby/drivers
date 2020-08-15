@@ -2,7 +2,7 @@
 //
 // Datasheet: https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf
 //
-package ssd1306 // import "tinygo.org/x/drivers/ssd1306"
+package ssd1306 
 
 import (
 	"errors"
@@ -34,12 +34,12 @@ type I2CBus struct {
 	Address uint16
 }
 
-type SPIBus struct {
-	wire     machine.SPI
-	dcPin    machine.Pin
-	resetPin machine.Pin
-	csPin    machine.Pin
-}
+// type SPIBus struct {
+// 	wire     machine.SPI
+// 	dcPin    machine.Pin
+// 	resetPin machine.Pin
+// 	csPin    machine.Pin
+// }
 
 type Buser interface {
 	configure()
@@ -60,19 +60,19 @@ func NewI2C(bus machine.I2C) Device {
 }
 
 // NewSPI creates a new SSD1306 connection. The SPI wire must already be configured.
-func NewSPI(bus machine.SPI, dcPin, resetPin, csPin machine.Pin) Device {
-	dcPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	resetPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	csPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	return Device{
-		bus: &SPIBus{
-			wire:     bus,
-			dcPin:    dcPin,
-			resetPin: resetPin,
-			csPin:    csPin,
-		},
-	}
-}
+// func NewSPI(bus machine.SPI, dcPin, resetPin, csPin machine.Pin) Device {
+// 	dcPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
+// 	resetPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
+// 	csPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
+// 	return Device{
+// 		bus: &SPIBus{
+// 			wire:     bus,
+// 			dcPin:    dcPin,
+// 			resetPin: resetPin,
+// 			csPin:    csPin,
+// 		},
+// 	}
+// }
 
 // Configure initializes the display with default configuration
 func (d *Device) Configure(cfg Config) {
@@ -238,26 +238,26 @@ func (b *I2CBus) setAddress(address uint16) {
 }
 
 // setAddress does nothing, but it's required to avoid reflection
-func (b *SPIBus) setAddress(address uint16) {
-	// do nothing
-	println("trying to Configure an address on a SPI device")
-}
+// func (b *SPIBus) setAddress(address uint16) {
+// 	// do nothing
+// 	println("trying to Configure an address on a SPI device")
+// }
 
 // configure does nothing, but it's required to avoid reflection
 func (b *I2CBus) configure() {}
 
 // configure configures some pins with the SPI bus
-func (b *SPIBus) configure() {
-	b.csPin.Low()
-	b.dcPin.Low()
-	b.resetPin.Low()
+// func (b *SPIBus) configure() {
+// 	b.csPin.Low()
+// 	b.dcPin.Low()
+// 	b.resetPin.Low()
 
-	b.resetPin.High()
-	time.Sleep(1 * time.Millisecond)
-	b.resetPin.Low()
-	time.Sleep(10 * time.Millisecond)
-	b.resetPin.High()
-}
+// 	b.resetPin.High()
+// 	time.Sleep(1 * time.Millisecond)
+// 	b.resetPin.Low()
+// 	time.Sleep(10 * time.Millisecond)
+// 	b.resetPin.High()
+// }
 
 // Tx sends data to the display
 func (d *Device) Tx(data []byte, isCommand bool) {
@@ -274,25 +274,25 @@ func (b *I2CBus) tx(data []byte, isCommand bool) {
 }
 
 // tx sends data to the display (SPIBus implementation)
-func (b *SPIBus) tx(data []byte, isCommand bool) {
-	if isCommand {
-		b.csPin.High()
-		time.Sleep(1 * time.Millisecond)
-		b.dcPin.Low()
-		b.csPin.Low()
+// func (b *SPIBus) tx(data []byte, isCommand bool) {
+// 	if isCommand {
+// 		b.csPin.High()
+// 		time.Sleep(1 * time.Millisecond)
+// 		b.dcPin.Low()
+// 		b.csPin.Low()
 
-		b.wire.Tx(data, nil)
-		b.csPin.High()
-	} else {
-		b.csPin.High()
-		time.Sleep(1 * time.Millisecond)
-		b.dcPin.High()
-		b.csPin.Low()
+// 		b.wire.Tx(data, nil)
+// 		b.csPin.High()
+// 	} else {
+// 		b.csPin.High()
+// 		time.Sleep(1 * time.Millisecond)
+// 		b.dcPin.High()
+// 		b.csPin.Low()
 
-		b.wire.Tx(data, nil)
-		b.csPin.High()
-	}
-}
+// 		b.wire.Tx(data, nil)
+// 		b.csPin.High()
+// 	}
+// }
 
 // Size returns the current size of the display.
 func (d *Device) Size() (w, h int16) {

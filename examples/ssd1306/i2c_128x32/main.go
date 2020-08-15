@@ -6,7 +6,7 @@ import (
 	"image/color"
 	"time"
 
-	"tinygo.org/x/drivers/ssd1306"
+	"github.com/guygrigsby/drivers/ssd1306"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 	display.Configure(ssd1306.Config{
 		Address: ssd1306.Address_128_32,
 		Width:   128,
-		Height:  32,
+		Height:  64,
 	})
 
 	display.ClearDisplay()

@@ -3,7 +3,7 @@
 //
 // Datasheet: https://www.nxp.com/docs/en/data-sheet/MAG3110.pdf
 //
-package mag3110 // import "tinygo.org/x/drivers/mag3110"
+package mag3110 
 
 import (
 	"machine"

@@ -3,7 +3,7 @@
 // Datasheet:
 // https://datasheets.maximintegrated.com/en/ds/DS1307.pdf
 //
-package ds1307 // import "tinygo.org/x/drivers/ds1307"
+package ds1307 
 
 import (
 	"errors"

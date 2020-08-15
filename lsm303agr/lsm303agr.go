@@ -3,7 +3,7 @@
 //
 // Datasheet: https://www.st.com/resource/en/datasheet/lsm303agr.pdf
 //
-package lsm303agr // import "tinygo.org/x/drivers/lsm303agr"
+package lsm303agr 
 
 import (
 	"machine"

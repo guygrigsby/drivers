@@ -3,7 +3,7 @@
 //
 // Datasheet: https://cdn-learn.adafruit.com/assets/assets/000/049/977/original/MP34DT01-M.pdf
 //
-package microphone // import "tinygo.org/x/drivers/microphone"
+package microphone 
 
 import (
 	"machine"

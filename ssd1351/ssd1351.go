@@ -2,7 +2,7 @@
 //
 // Datasheet: https://download.mikroe.com/documents/datasheets/ssd1351-revision-1.3.pdf
 //
-package ssd1351 // import "tinygo.org/x/drivers/ssd1351"
+package ssd1351 
 
 import (
 	"errors"
