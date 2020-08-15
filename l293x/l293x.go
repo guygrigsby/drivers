@@ -3,7 +3,7 @@
 //
 // Datasheet: https://www.ti.com/lit/ds/symlink/l293d.pdf
 //
-package l293x // import "github.com/guygrigsby/drivers/l293x"
+package l293x 
 
 import (
 	"machine"

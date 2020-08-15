@@ -2,7 +2,7 @@
 //
 // Datasheet: https://cdn-shop.adafruit.com/product-files/3787/3787_tft_QT154H2201__________20190228182902.pdf
 //
-package st7789 // import "github.com/guygrigsby/drivers/st7789"
+package st7789 
 
 import (
 	"image/color"

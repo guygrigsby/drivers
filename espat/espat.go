@@ -16,7 +16,7 @@
 // AT command set:
 // https://www.espressif.com/sites/default/files/documentation/4a-esp8266_at_instruction_set_en.pdf
 //
-package espat // import "github.com/guygrigsby/drivers/espat"
+package espat 
 
 import (
 	"errors"

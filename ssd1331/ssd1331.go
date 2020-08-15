@@ -2,7 +2,7 @@
 //
 // Datasheet: https://www.crystalfontz.com/controllers/SolomonSystech/SSD1331/381/
 //
-package ssd1331 // import "github.com/guygrigsby/drivers/ssd1331"
+package ssd1331 
 
 import (
 	"image/color"

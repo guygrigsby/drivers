@@ -6,7 +6,7 @@
 // Application Notes:
 // https://www.vishay.com/docs/84310/designingveml6070.pdf
 //
-package veml6070 // import "github.com/guygrigsby/drivers/veml6070"
+package veml6070 
 
 import (
 	"time"

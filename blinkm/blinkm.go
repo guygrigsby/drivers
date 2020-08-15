@@ -1,7 +1,7 @@
 // Package blinkm implements a driver for the BlinkM I2C RGB LED.
 //
 // Datasheet: http://thingm.com/fileadmin/thingm/downloads/BlinkM_datasheet.pdf
-package blinkm // import "github.com/guygrigsby/drivers/blinkm"
+package blinkm 
 
 import (
 	"machine"

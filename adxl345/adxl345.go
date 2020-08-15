@@ -4,7 +4,7 @@
 //
 // Datasheet JP: http://www.analog.com/media/jp/technical-documentation/data-sheets/ADXL345_jp.pdf
 //
-package adxl345 // import "github.com/guygrigsby/drivers/adxl345"
+package adxl345 
 
 import (
 	"machine"

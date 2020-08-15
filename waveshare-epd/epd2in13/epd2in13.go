@@ -2,7 +2,7 @@
 //
 // Datasheet: https://www.waveshare.com/w/upload/e/e6/2.13inch_e-Paper_Datasheet.pdf
 //
-package epd2in13 // import "github.com/guygrigsby/drivers/waveshare-epd/epd2in13"
+package epd2in13 
 
 import (
 	"errors"

@@ -2,7 +2,7 @@
 //
 // Datasheet: https://www.st.com/resource/en/datasheet/lis3dh.pdf
 //
-package lis3dh // import "github.com/guygrigsby/drivers/lis3dh"
+package lis3dh 
 
 import (
 	"machine"

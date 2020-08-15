@@ -5,7 +5,7 @@
 // https://store.invensense.com/datasheets/invensense/MPU-6050_DataSheet_V3%204.pdf
 // https://www.invensense.com/wp-content/uploads/2015/02/MPU-6000-Register-Map1.pdf
 //
-package mpu6050 // import "github.com/guygrigsby/drivers/mpu6050"
+package mpu6050 
 
 import (
 	"machine"

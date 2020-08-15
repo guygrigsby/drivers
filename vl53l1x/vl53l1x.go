@@ -7,7 +7,7 @@
 // and ST's VL53L1X API (STSW-IMG007)
 // https://www.st.com/content/st_com/en/products/embedded-software/proximity-sensors-software/stsw-img007.html
 //
-package vl53l1x // import "github.com/guygrigsby/drivers/vl53l1x"
+package vl53l1x 
 
 import (
 	"machine"

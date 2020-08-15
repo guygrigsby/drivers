@@ -1,4 +1,4 @@
-module tinygo.org/x/drivers
+module github.com/guygrigsby/drivers
 
 go 1.14
 
