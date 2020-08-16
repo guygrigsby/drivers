@@ -1,12 +1,11 @@
-// Package ssd1306 implements a driver for the SSD1306 led matrix controller, it comes in various colors and screen sizes.
+// Package ssd1306 implements a driver forthe SSD1306 led matrix controller, it comes in various colors and screen sizes.
 //
 // Datasheet: https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf
 //
-package ssd1306 
+package ssd1306
 
 import (
 	"errors"
-	"image/color"
 	"machine"
 	"time"
 )
@@ -34,12 +33,12 @@ type I2CBus struct {
 	Address uint16
 }
 
-// type SPIBus struct {
-// 	wire     machine.SPI
-// 	dcPin    machine.Pin
-// 	resetPin machine.Pin
-// 	csPin    machine.Pin
-// }
+type SPIBus struct {
+	wire     machine.SPI
+	dcPin    machine.Pin
+	resetPin machine.Pin
+	csPin    machine.Pin
+}
 
 type Buser interface {
 	configure()
@@ -60,19 +59,19 @@ func NewI2C(bus machine.I2C) Device {
 }
 
 // NewSPI creates a new SSD1306 connection. The SPI wire must already be configured.
-// func NewSPI(bus machine.SPI, dcPin, resetPin, csPin machine.Pin) Device {
-// 	dcPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
-// 	resetPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
-// 	csPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
-// 	return Device{
-// 		bus: &SPIBus{
-// 			wire:     bus,
-// 			dcPin:    dcPin,
-// 			resetPin: resetPin,
-// 			csPin:    csPin,
-// 		},
-// 	}
-// }
+func NewSPI(bus machine.SPI, dcPin, resetPin, csPin machine.Pin) Device {
+	dcPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	resetPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	csPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	return Device{
+		bus: &SPIBus{
+			wire:     bus,
+			dcPin:    dcPin,
+			resetPin: resetPin,
+			csPin:    csPin,
+		},
+	}
+}
 
 // Configure initializes the display with default configuration
 func (d *Device) Configure(cfg Config) {
@@ -191,30 +190,6 @@ func (d *Device) Display() error {
 	return nil
 }
 
-// SetPixel enables or disables a pixel in the buffer
-// color.RGBA{0, 0, 0, 255} is consider transparent, anything else
-// with enable a pixel on the screen
-func (d *Device) SetPixel(x int16, y int16, c color.RGBA) {
-	if x < 0 || x >= d.width || y < 0 || y >= d.height {
-		return
-	}
-	byteIndex := x + (y/8)*d.width
-	if c.R != 0 || c.G != 0 || c.B != 0 {
-		d.buffer[byteIndex] |= 1 << uint8(y%8)
-	} else {
-		d.buffer[byteIndex] &^= 1 << uint8(y%8)
-	}
-}
-
-// GetPixel returns if the specified pixel is on (true) or off (false)
-func (d *Device) GetPixel(x int16, y int16) bool {
-	if x < 0 || x >= d.width || y < 0 || y >= d.height {
-		return false
-	}
-	byteIndex := x + (y/8)*d.width
-	return (d.buffer[byteIndex] >> uint8(y%8) & 0x1) == 1
-}
-
 // SetBuffer changes the whole buffer at once
 func (d *Device) SetBuffer(buffer []byte) error {
 	if int16(len(buffer)) != d.bufferSize {
@@ -247,17 +222,17 @@ func (b *I2CBus) setAddress(address uint16) {
 func (b *I2CBus) configure() {}
 
 // configure configures some pins with the SPI bus
-// func (b *SPIBus) configure() {
-// 	b.csPin.Low()
-// 	b.dcPin.Low()
-// 	b.resetPin.Low()
+func (b *SPIBus) configure() {
+	b.csPin.Low()
+	b.dcPin.Low()
+	b.resetPin.Low()
 
-// 	b.resetPin.High()
-// 	time.Sleep(1 * time.Millisecond)
-// 	b.resetPin.Low()
-// 	time.Sleep(10 * time.Millisecond)
-// 	b.resetPin.High()
-// }
+	b.resetPin.High()
+	time.Sleep(1 * time.Millisecond)
+	b.resetPin.Low()
+	time.Sleep(10 * time.Millisecond)
+	b.resetPin.High()
+}
 
 // Tx sends data to the display
 func (d *Device) Tx(data []byte, isCommand bool) {
@@ -274,25 +249,25 @@ func (b *I2CBus) tx(data []byte, isCommand bool) {
 }
 
 // tx sends data to the display (SPIBus implementation)
-// func (b *SPIBus) tx(data []byte, isCommand bool) {
-// 	if isCommand {
-// 		b.csPin.High()
-// 		time.Sleep(1 * time.Millisecond)
-// 		b.dcPin.Low()
-// 		b.csPin.Low()
+func (b *SPIBus) tx(data []byte, isCommand bool) {
+	if isCommand {
+		b.csPin.High()
+		time.Sleep(1 * time.Millisecond)
+		b.dcPin.Low()
+		b.csPin.Low()
 
-// 		b.wire.Tx(data, nil)
-// 		b.csPin.High()
-// 	} else {
-// 		b.csPin.High()
-// 		time.Sleep(1 * time.Millisecond)
-// 		b.dcPin.High()
-// 		b.csPin.Low()
+		b.wire.Tx(data, nil)
+		b.csPin.High()
+	} else {
+		b.csPin.High()
+		time.Sleep(1 * time.Millisecond)
+		b.dcPin.High()
+		b.csPin.Low()
 
-// 		b.wire.Tx(data, nil)
-// 		b.csPin.High()
-// 	}
-// }
+		b.wire.Tx(data, nil)
+		b.csPin.High()
+	}
+}
 
 // Size returns the current size of the display.
 func (d *Device) Size() (w, h int16) {
